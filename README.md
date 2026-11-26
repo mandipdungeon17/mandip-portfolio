@@ -20,25 +20,27 @@ npm run typecheck
 npm run build
 ```
 
+`npm run build` produces the Cloudflare Worker bundle in `.open-next` (OpenNext
+runs `npm run build:next` internally for the plain Next.js build).
+
 ## Deploy to Vercel
 
 1. Push this folder to a GitHub repository.
-2. Import the repository in Vercel. Select Next.js as the framework; the defaults are already configured.
+2. Import the repository in Vercel. Select Next.js as the framework and set the
+   build command to `npm run build:next`.
 3. Deploy. No environment variables or external data services are required.
 
 ## Deploy to Cloudflare Workers
 
 The Worker and its `WORKER_SELF_REFERENCE` service binding must both be named
 `mandip-portfolio`. The Wrangler configuration keeps them in sync.
-For the existing Workers Builds project, set:
+Workers Builds works with its default settings:
 
-- Build command: `npm run build:cloudflare`
-- Deploy command: `npm run deploy:cloudflare`
+- Build command: `npm run build`
+- Deploy command: `npx wrangler deploy` (or `npm run deploy`)
 - Build environment: Node.js 22.12 or newer.
 
-Push these changes and redeploy. The OpenNext build runs `next build` itself;
-do not use `npm run build` alone as the Cloudflare build command.
-To test locally with the Workers runtime, run `npm run preview:cloudflare`.
+To test locally with the Workers runtime, run `npm run preview`.
 OpenNext recommends using WSL on Windows.
 
 Once deployed, add `mandippandit.com` under the Worker's **Settings > Domains
