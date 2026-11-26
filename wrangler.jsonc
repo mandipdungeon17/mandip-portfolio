@@ -13,5 +13,9 @@
       "binding": "WORKER_SELF_REFERENCE",
       "service": "mandip-portfolio"
     }
+  ],
+  "routes": [
+    { "pattern": "mandippandit.com", "custom_domain": true },
+    { "pattern": "www.mandippandit.com", "custom_domain": true }
   ]
 }

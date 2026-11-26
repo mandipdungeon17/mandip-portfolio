@@ -43,10 +43,9 @@ Workers Builds works with its default settings:
 To test locally with the Workers runtime, run `npm run preview`.
 OpenNext recommends using WSL on Windows.
 
-Once deployed, add `mandippandit.com` under the Worker's **Settings > Domains
-& Routes > Add > Custom Domain**. The domain must be an active zone in the
-same Cloudflare account. Follow Cloudflare's prompts for DNS and certificate
-provisioning. Domain setup is separate from the Worker build and deployment.
+`mandippandit.com` and `www.mandippandit.com` are attached as Workers Custom
+Domains through `routes` in `wrangler.jsonc`; Cloudflare creates their DNS
+records and certificates on deploy. The zone must be active in the same account.
 
 The GitHub insights panel reads only public profile, repository, and recent-event data from GitHub's REST API in the visitor's browser. If GitHub is unavailable or rate-limits the request, the panel reports that state and links directly to the profile.
 
