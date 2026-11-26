@@ -4,7 +4,7 @@ A premium, responsive engineering portfolio built with Next.js 15, React 19, Typ
 
 ## Run locally
 
-Requires Node.js 18.18 or newer.
+Requires Node.js 22.12 or newer for Cloudflare builds.
 
 ```bash
 npm install
@@ -25,6 +25,26 @@ npm run build
 1. Push this folder to a GitHub repository.
 2. Import the repository in Vercel. Select Next.js as the framework; the defaults are already configured.
 3. Deploy. No environment variables or external data services are required.
+
+## Deploy to Cloudflare Workers
+
+The Worker and its `WORKER_SELF_REFERENCE` service binding must both be named
+`mandip-portfolio`. The Wrangler configuration keeps them in sync.
+For the existing Workers Builds project, set:
+
+- Build command: `npm run build:cloudflare`
+- Deploy command: `npm run deploy:cloudflare`
+- Build environment: Node.js 22.12 or newer.
+
+Push these changes and redeploy. The OpenNext build runs `next build` itself;
+do not use `npm run build` alone as the Cloudflare build command.
+To test locally with the Workers runtime, run `npm run preview:cloudflare`.
+OpenNext recommends using WSL on Windows.
+
+Once deployed, add `mandippandit.com` under the Worker's **Settings > Domains
+& Routes > Add > Custom Domain**. The domain must be an active zone in the
+same Cloudflare account. Follow Cloudflare's prompts for DNS and certificate
+provisioning. Domain setup is separate from the Worker build and deployment.
 
 The GitHub insights panel reads only public profile, repository, and recent-event data from GitHub's REST API in the visitor's browser. If GitHub is unavailable or rate-limits the request, the panel reports that state and links directly to the profile.
 
